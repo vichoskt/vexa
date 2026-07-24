@@ -1,0 +1,53 @@
+---
+import { faqs } from "../data/faq";
+---
+
+<section id="faq" class="mx-auto max-w-3xl px-6 py-20 sm:py-28">
+  <div class="max-w-2xl">
+    <p class="font-mono text-xs tracking-[0.2em] text-vx-violet uppercase">
+      Preguntas frecuentes
+    </p>
+    <h2
+      class="mt-4 font-display text-3xl font-semibold text-balance text-vx-ink sm:text-4xl"
+    >
+      Lo que conviene aclarar antes.
+    </h2>
+  </div>
+
+  <div class="mt-10 divide-y divide-vx-muted/15 border-y border-vx-muted/15">
+    {
+      faqs.map((faq) => (
+        <details class="py-2">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 font-display text-lg font-medium text-vx-ink transition hover:text-vx-violet focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:ring-offset-2 focus-visible:ring-offset-vx-canvas focus-visible:outline-none [&::-webkit-details-marker]:hidden">
+            {faq.pregunta}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="faq-chevron h-5 w-5 flex-none text-vx-violet transition-transform duration-200"
+            >
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </summary>
+          <p class="pb-5 text-vx-muted text-pretty">{faq.respuesta}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  details[open] .faq-chevron {
+    transform: rotate(45deg);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-chevron {
+      transition: none;
+    }
+  }
+</style>

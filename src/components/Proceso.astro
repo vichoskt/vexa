@@ -1,0 +1,44 @@
+---
+import { proceso } from "../data/proceso";
+---
+
+<section id="proceso" class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+  <div class="max-w-2xl">
+    <p class="font-mono text-xs tracking-[0.2em] text-vx-violet uppercase">
+      Cómo trabajamos
+    </p>
+    <h2
+      class="mt-4 font-display text-3xl font-semibold text-balance text-vx-ink sm:text-4xl"
+    >
+      Sabes lo que va a pasar antes de empezar.
+    </h2>
+    <p class="mt-4 text-lg text-vx-muted text-pretty">
+      Cuatro pasos, sin letra chica. El valor se define en la propuesta y queda
+      por escrito antes de mover un dedo.
+    </p>
+  </div>
+
+  <ol class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      proceso.map((paso, i) => (
+        <li class="flex flex-col">
+          <div class="flex items-center gap-4">
+            <span class="font-mono text-3xl font-semibold text-vx-violet">
+              {paso.numero}
+            </span>
+            {i < proceso.length - 1 && (
+              <span
+                aria-hidden="true"
+                class="hidden h-px flex-1 bg-gradient-to-r from-vx-violet/40 to-vx-muted/15 lg:block"
+              />
+            )}
+          </div>
+          <h3 class="mt-4 font-display text-xl font-semibold text-vx-ink">
+            {paso.titulo}
+          </h3>
+          <p class="mt-2 text-vx-muted text-pretty">{paso.descripcion}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>

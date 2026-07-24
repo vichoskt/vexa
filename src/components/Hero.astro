@@ -1,0 +1,58 @@
+---
+import { site } from "../config/site";
+import { whatsappUrl } from "../lib/contacto";
+
+const wa = whatsappUrl();
+---
+
+<section class="relative overflow-hidden">
+  <!-- Halo de marca: único gasto de degradado en el hero, muy suave -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(109,59,232,0.18),rgba(34,184,232,0.10),transparent)] blur-2xl"
+  >
+  </div>
+
+  <div class="mx-auto max-w-3xl px-6 pt-24 pb-20 text-center sm:pt-32 sm:pb-28">
+    <p
+      class="font-mono text-xs tracking-[0.2em] text-vx-violet uppercase sm:text-sm"
+    >
+      Agencia de marketing digital
+    </p>
+
+    <h1
+      class="mt-6 font-display text-4xl leading-[1.05] font-semibold text-balance text-vx-ink sm:text-6xl"
+    >
+      Tienes una marca.<br class="hidden sm:block" />
+      <span class="text-vx-violet"> Falta ordenarla y hacerla avanzar.</span>
+    </h1>
+
+    <p class="mx-auto mt-6 max-w-xl text-lg text-vx-muted text-pretty sm:text-xl">
+      {site.promesa}
+    </p>
+
+    <div
+      class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+    >
+      <a
+        href="#contacto"
+        class="inline-flex w-full items-center justify-center rounded-full bg-vx-violet px-7 py-3.5 font-medium text-white shadow-lg shadow-vx-violet/20 transition hover:brightness-110 focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:ring-offset-2 focus-visible:ring-offset-vx-canvas focus-visible:outline-none sm:w-auto"
+      >
+        Pedir propuesta
+      </a>
+
+      {
+        wa && (
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex w-full items-center justify-center gap-2 rounded-full border border-vx-muted/30 bg-white px-7 py-3.5 font-medium text-vx-ink transition hover:border-vx-violet hover:text-vx-violet focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:ring-offset-2 focus-visible:ring-offset-vx-canvas focus-visible:outline-none sm:w-auto"
+          >
+            Escribir por WhatsApp
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

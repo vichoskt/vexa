@@ -1,0 +1,86 @@
+---
+import { etapas } from "../data/etapas";
+
+// Estilo por escalón: el acento y el desfase vertical intensifican el avance.
+const acento: Record<number, { barra: string; texto: string; offset: string }> = {
+  1: { barra: "bg-vx-muted/40", texto: "text-vx-muted", offset: "sm:translate-y-0" },
+  2: { barra: "bg-vx-violet", texto: "text-vx-violet", offset: "sm:-translate-y-6" },
+  3: {
+    barra: "bg-gradient-to-r from-vx-violet to-vx-cyan",
+    texto: "text-vx-ink",
+    offset: "sm:-translate-y-12",
+  },
+};
+---
+
+<section id="etapas" class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+  <div class="max-w-2xl">
+    <p class="font-mono text-xs tracking-[0.2em] text-vx-violet uppercase">
+      ¿En qué etapa estás?
+    </p>
+    <h2
+      class="mt-4 font-display text-3xl font-semibold text-balance text-vx-ink sm:text-4xl"
+    >
+      No todas las marcas necesitan lo mismo.
+    </h2>
+    <p class="mt-4 text-lg text-vx-muted text-pretty">
+      Primero sabemos en qué escalón estás. Recién ahí recomendamos.
+    </p>
+  </div>
+
+  <ol class="mt-14 grid gap-6 sm:grid-cols-3">
+    {
+      etapas.map((etapa) => {
+        const a = acento[etapa.paso];
+        return (
+          <li
+            class={`group relative flex flex-col rounded-2xl border border-vx-muted/15 bg-white p-6 shadow-sm ${a.offset}`}
+          >
+            <span class={`absolute inset-x-6 top-0 h-1 rounded-b-full ${a.barra}`} />
+
+            <div class="flex items-center justify-between">
+              <span class={`font-mono text-sm font-medium ${a.texto}`}>
+                0{etapa.paso}
+              </span>
+              <span
+                class="flex gap-1.5"
+                role="img"
+                aria-label={`Escalón ${etapa.paso} de ${etapas.length}`}
+              >
+                {etapas.map((_, i) => (
+                  <span
+                    class={`h-1.5 w-1.5 rounded-full ${
+                      i < etapa.paso ? "bg-vx-violet" : "bg-vx-muted/25"
+                    }`}
+                  />
+                ))}
+              </span>
+            </div>
+
+            <p
+              class={`mt-4 font-mono text-xs tracking-[0.15em] uppercase ${a.texto}`}
+            >
+              {etapa.verbo}
+            </p>
+
+            <blockquote class="mt-2 font-display text-2xl leading-tight font-semibold text-balance text-vx-ink">
+              «{etapa.vozCliente}»
+            </blockquote>
+
+            <hr class="my-5 border-vx-muted/15" />
+
+            <p class="text-sm text-vx-muted text-pretty">{etapa.servicio.paraQuien}</p>
+
+            <a
+              href={`#${etapa.servicio.slug}`}
+              class="mt-4 inline-flex items-center gap-1 font-mono text-sm font-medium text-vx-ink transition hover:text-vx-violet focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:ring-offset-2 focus-visible:ring-offset-vx-canvas focus-visible:outline-none"
+            >
+              {etapa.servicio.nombre}
+              <span aria-hidden="true" class="transition group-hover:translate-x-0.5">→</span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ol>
+</section>

@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource/public-sans/400.css";
+@import "@fontsource/public-sans/500.css";
+@import "@fontsource/public-sans/600.css";
+@import "@fontsource/public-sans/700.css";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme {
+  --color-vx-ink: #1b1035;
+  --color-vx-canvas: #f7f5ff;
+  --color-vx-violet: #6d3be8;
+  --color-vx-cyan: #22b8e8;
+  --color-vx-magenta: #c049e0;
+  --color-vx-muted: #6b6480;
+
+  --font-display: "Bricolage Grotesque Variable", sans-serif;
+  --font-body: "Public Sans", sans-serif;
+  --font-mono: "JetBrains Mono Variable", monospace;
+}
+
+/* Garantiza el colapso nativo de <details> sin depender del UA stylesheet. */
+details:not([open]) > *:not(summary) {
+  display: none;
+}
+
+/* Progresivo: [data-js] solo con JS, [data-nojs] solo sin JS. */
+html:not(.js) [data-js] {
+  display: none !important;
+}
+html.js [data-nojs] {
+  display: none !important;
+}

@@ -1,0 +1,44 @@
+---
+import Base from "../layouts/Base.astro";
+import { whatsappUrl, instagramUrl } from "../lib/contacto";
+
+const wa = whatsappUrl();
+const ig = instagramUrl();
+---
+
+<Base title="Gracias — VEXA">
+  <main class="mx-auto flex min-h-[70vh] max-w-xl flex-col items-center justify-center px-6 py-24 text-center">
+    <p class="font-mono text-xs tracking-[0.2em] text-vx-violet uppercase">
+      Mensaje recibido
+    </p>
+    <h1 class="mt-4 font-display text-4xl font-semibold text-balance text-vx-ink">
+      ¡Gracias! Te respondemos pronto.
+    </h1>
+    <p class="mt-4 text-lg text-vx-muted text-pretty">
+      Recibimos tu mensaje. Te contactamos dentro de 24 a 48 horas hábiles por
+      correo o WhatsApp con los próximos pasos.
+    </p>
+
+    <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+      <a
+        href={import.meta.env.BASE_URL}
+        class="inline-flex items-center justify-center rounded-full border border-vx-muted/30 px-6 py-3 font-medium text-vx-ink transition hover:border-vx-violet hover:text-vx-violet focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:outline-none"
+      >
+        Volver al inicio
+      </a>
+      {
+        wa && (
+          <a
+            href={wa}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full bg-vx-violet px-6 py-3 font-medium text-white transition hover:brightness-110 focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:outline-none"
+          >
+            Escribir por WhatsApp
+          </a>
+        )
+      }
+    </div>
+    {ig && <a href={ig} target="_blank" rel="noopener noreferrer" class="mt-6 text-sm text-vx-muted underline hover:text-vx-violet">Síguenos en Instagram</a>}
+  </main>
+</Base>

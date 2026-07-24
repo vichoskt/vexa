@@ -1,0 +1,71 @@
+---
+import { site } from "../config/site";
+import { instagramUrl, correoUrl, whatsappUrl } from "../lib/contacto";
+
+const ig = instagramUrl();
+const correo = correoUrl();
+const wa = whatsappUrl();
+const anio = new Date().getFullYear();
+
+const enlaces = [
+  { href: "#etapas", texto: "Etapas" },
+  { href: "#servicios", texto: "Servicios" },
+  { href: "#proceso", texto: "Cómo trabajamos" },
+  { href: "#faq", texto: "Preguntas" },
+  { href: "#contacto", texto: "Contacto" },
+];
+---
+
+<footer class="border-t border-vx-muted/15 bg-white">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-14 sm:flex-row sm:items-start sm:justify-between"
+  >
+    <div class="max-w-xs">
+      <p class="font-display text-2xl font-semibold text-vx-ink">{site.nombre}</p>
+      <p class="mt-2 font-mono text-xs tracking-[0.15em] text-vx-muted uppercase">
+        {site.tagline}
+      </p>
+      <p class="mt-4 text-sm text-vx-muted text-pretty">{site.promesa}</p>
+    </div>
+
+    <nav aria-label="Secciones" class="flex flex-col gap-2 text-sm">
+      {
+        enlaces.map((e) => (
+          <a href={e.href} class="text-vx-muted transition hover:text-vx-violet">
+            {e.texto}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex flex-col gap-2 text-sm">
+      {
+        wa && (
+          <a href={wa} target="_blank" rel="noopener noreferrer" class="text-vx-muted transition hover:text-vx-violet">
+            WhatsApp
+          </a>
+        )
+      }
+      {
+        ig && (
+          <a href={ig} target="_blank" rel="noopener noreferrer" class="text-vx-muted transition hover:text-vx-violet">
+            Instagram · @{site.instagram}
+          </a>
+        )
+      }
+      {
+        correo && (
+          <a href={correo} class="text-vx-muted transition hover:text-vx-violet">
+            {site.correo}
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <div class="border-t border-vx-muted/10">
+    <p class="mx-auto max-w-6xl px-6 py-6 text-xs text-vx-muted">
+      © {anio} {site.nombre}. Agencia de marketing digital.
+    </p>
+  </div>
+</footer>

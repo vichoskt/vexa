@@ -1,0 +1,25 @@
+---
+import { servicios } from "../data/servicios";
+import ServicioCard from "./ServicioCard.astro";
+---
+
+<section id="servicios" class="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+  <div class="max-w-2xl">
+    <p class="font-mono text-xs tracking-[0.2em] text-vx-violet uppercase">
+      Servicios
+    </p>
+    <h2
+      class="mt-4 font-display text-3xl font-semibold text-balance text-vx-ink sm:text-4xl"
+    >
+      Seis formas de trabajar juntos.
+    </h2>
+    <p class="mt-4 text-lg text-vx-muted text-pretty">
+      Tres escalones de crecimiento, dos servicios de producción y una puerta de
+      entrada para decidir con calma. El alcance exacto va en tu propuesta.
+    </p>
+  </div>
+
+  <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {servicios.map((servicio) => <ServicioCard servicio={servicio} />)}
+  </div>
+</section>
