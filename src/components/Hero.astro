@@ -1,11 +1,12 @@
 ---
 import { site } from "../config/site";
 import { whatsappUrl } from "../lib/contacto";
+import LogoVexa from "./LogoVexa.astro";
 
 const wa = whatsappUrl();
 ---
 
-<section class="relative overflow-hidden">
+<section id="inicio" class="relative overflow-hidden">
   <!-- Halo de marca: único gasto de degradado en el hero, muy suave -->
   <div
     aria-hidden="true"
@@ -13,22 +14,18 @@ const wa = whatsappUrl();
   >
   </div>
 
-  <div class="mx-auto max-w-3xl px-6 pt-24 pb-20 text-center sm:pt-32 sm:pb-28">
-    <p
-      class="font-mono text-xs tracking-[0.2em] text-vx-violet uppercase sm:text-sm"
-    >
-      Agencia de marketing digital
-    </p>
+  <div class="mx-auto max-w-3xl px-6 pt-16 pb-20 text-center sm:pt-24 sm:pb-28">
+    <LogoVexa size="lg" tagline class="justify-center" />
 
     <h1
-      class="mt-6 font-display text-4xl leading-[1.05] font-semibold text-balance text-vx-ink sm:text-6xl"
+      class="mt-8 font-display text-4xl leading-[1.05] font-semibold text-balance text-vx-ink sm:text-6xl"
     >
       Tienes una marca.<br class="hidden sm:block" />
       <span class="text-vx-violet"> Falta ordenarla y hacerla avanzar.</span>
     </h1>
 
     <p class="mx-auto mt-6 max-w-xl text-lg text-vx-muted text-pretty sm:text-xl">
-      {site.promesa}
+      {site.introHero}
     </p>
 
     <div

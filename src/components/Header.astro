@@ -1,0 +1,129 @@
+---
+import { navegacion } from "../data/navegacion";
+import LogoVexa from "./LogoVexa.astro";
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-vx-muted/15 bg-vx-canvas/80 backdrop-blur"
+>
+  <nav
+    aria-label="Principal"
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3"
+  >
+    <a
+      href="#inicio"
+      aria-label="VEXA, ir al inicio"
+      class="rounded-lg focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:outline-none"
+    >
+      <LogoVexa size="sm" />
+    </a>
+
+    <!-- Desktop: enlaces directos -->
+    <ul class="hidden items-center gap-5 lg:flex">
+      {
+        navegacion.map((e) => (
+          <li>
+            <a
+              href={e.href}
+              class="text-sm text-vx-muted transition hover:text-vx-violet focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:outline-none"
+            >
+              {e.etiqueta}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Móvil: botón hamburguesa (visible solo con JS) -->
+    <button
+      type="button"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="menu-movil"
+      aria-label="Abrir menú"
+      class="grid h-10 w-10 place-items-center rounded-full bg-vx-violet text-white transition hover:brightness-110 focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:ring-offset-2 focus-visible:ring-offset-vx-canvas focus-visible:outline-none"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        class="h-5 w-5"
+        aria-hidden="true"
+      >
+        <line x1="4" y1="7" x2="20" y2="7"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="17" x2="20" y2="17"></line>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- Panel de navegación móvil -->
+  <div id="menu-movil" data-menu-panel class="border-t border-vx-muted/15 lg:hidden">
+    <ul class="mx-auto flex max-w-6xl flex-col px-4 py-2">
+      {
+        navegacion.map((e) => (
+          <li>
+            <a
+              href={e.href}
+              data-menu-link
+              class="block rounded-lg px-3 py-3 text-vx-ink transition hover:bg-vx-violet/8 hover:text-vx-violet focus-visible:ring-2 focus-visible:ring-vx-ink focus-visible:outline-none"
+            >
+              {e.etiqueta}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</header>
+
+<style is:global>
+  /* Sin JS: el hamburguesa se oculta y el panel de enlaces queda visible. */
+  [data-menu-toggle] {
+    display: none;
+  }
+  @media (max-width: 1023px) {
+    html.js [data-menu-toggle] {
+      display: grid;
+    }
+    html.js [data-menu-panel] {
+      display: none;
+    }
+    html.js [data-menu-panel][data-open] {
+      display: block;
+    }
+  }
+  @media (min-width: 1024px) {
+    /* En desktop siempre manda la barra directa; el panel nunca se muestra. */
+    [data-menu-panel] {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.getElementById("menu-movil");
+
+  if (toggle && panel) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      panel.toggleAttribute("data-open", open);
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    panel.querySelectorAll("[data-menu-link]").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setOpen(false);
+    });
+  }
+</script>

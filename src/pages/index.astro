@@ -1,10 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import EscaleraEtapas from "../components/EscaleraEtapas.astro";
 import RielDeEtapa from "../components/RielDeEtapa.astro";
 import Servicios from "../components/Servicios.astro";
 import Proceso from "../components/Proceso.astro";
+import SobreVexa from "../components/SobreVexa.astro";
 import Faq from "../components/Faq.astro";
 import Contacto from "../components/Contacto.astro";
 import Footer from "../components/Footer.astro";
@@ -12,12 +14,14 @@ import BotonWhatsapp from "../components/BotonWhatsapp.astro";
 ---
 
 <Base>
+  <Header />
   <main>
     <Hero />
     <EscaleraEtapas />
     <RielDeEtapa />
     <Servicios />
     <Proceso />
+    <SobreVexa />
     <Faq />
     <Contacto />
   </main>

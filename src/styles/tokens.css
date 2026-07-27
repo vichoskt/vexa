@@ -20,6 +20,11 @@
   --font-mono: "JetBrains Mono Variable", monospace;
 }
 
+/* Compensa el header sticky al navegar por anclas (que no tape la sección). */
+html {
+  scroll-padding-top: 5rem;
+}
+
 /* Garantiza el colapso nativo de <details> sin depender del UA stylesheet. */
 details:not([open]) > *:not(summary) {
   display: none;

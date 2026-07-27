@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import axolotl from "../assets/axolotl.png";
+import { site } from "../config/site";
+
+interface Props {
+  size?: "sm" | "lg";
+  tagline?: boolean;
+  class?: string;
+}
+const { size = "sm", tagline = false, class: clase = "" } = Astro.props;
+
+const conf = {
+  sm: { img: "h-9 w-9", nombre: "text-xl", gap: "gap-2.5" },
+  lg: { img: "h-20 w-20 sm:h-24 sm:w-24", nombre: "text-4xl sm:text-5xl", gap: "gap-3 sm:gap-4" },
+};
+const c = conf[size];
+---
+
+<span class={`inline-flex items-center ${c.gap} ${clase}`}>
+  <Image
+    src={axolotl}
+    alt=""
+    width={192}
+    height={192}
+    densities={[1, 2]}
+    loading="eager"
+    class={`${c.img} flex-none object-contain`}
+  />
+  <span class="flex flex-col leading-none">
+    <span
+      class={`font-display font-bold tracking-tight text-vx-ink ${c.nombre}`}
+    >
+      {site.nombre}
+    </span>
+    {
+      tagline && (
+        <span class="mt-1.5 font-mono text-[0.6rem] tracking-[0.18em] text-vx-muted uppercase sm:text-xs">
+          {site.tagline}
+        </span>
+      )
+    }
+  </span>
+</span>

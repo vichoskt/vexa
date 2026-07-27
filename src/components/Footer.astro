@@ -1,19 +1,12 @@
 ---
 import { site } from "../config/site";
 import { instagramUrl, correoUrl, whatsappUrl } from "../lib/contacto";
+import { navegacion } from "../data/navegacion";
 
 const ig = instagramUrl();
 const correo = correoUrl();
 const wa = whatsappUrl();
 const anio = new Date().getFullYear();
-
-const enlaces = [
-  { href: "#etapas", texto: "Etapas" },
-  { href: "#servicios", texto: "Servicios" },
-  { href: "#proceso", texto: "Cómo trabajamos" },
-  { href: "#faq", texto: "Preguntas" },
-  { href: "#contacto", texto: "Contacto" },
-];
 ---
 
 <footer class="border-t border-vx-muted/15 bg-white">
@@ -30,9 +23,9 @@ const enlaces = [
 
     <nav aria-label="Secciones" class="flex flex-col gap-2 text-sm">
       {
-        enlaces.map((e) => (
+        navegacion.map((e) => (
           <a href={e.href} class="text-vx-muted transition hover:text-vx-violet">
-            {e.texto}
+            {e.etiqueta}
           </a>
         ))
       }
